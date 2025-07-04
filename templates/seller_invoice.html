@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Seller Invoice - Jai Shree Krishna Kela Group</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 30px;
+      font-size: 14px;
+      background: url("/images/banana-bg.png") no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    .invoice-box {
+      max-width: 750px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.95);
+      border: 2px solid #ffc107;
+      border-radius: 10px;
+      padding: 30px 40px;
+      color: #333;
+      position: relative;
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .logo img {
+      width: 120px;
+      height: auto;
+    }
+    .title {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .title h2 {
+      margin: 5px 0;
+      font-size: 24px;
+    }
+    .title h4 {
+      margin: 0;
+      color: #555;
+      font-weight: normal;
+    }
+    .invoice-number {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 15px;
+      font-weight: bold;
+      color: #000;
+    }
+    .meta {
+      margin-top: 40px;
+      line-height: 1.8;
+    }
+    .meta strong {
+      display: inline-block;
+      width: 150px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 25px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+    th {
+      background-color: #f8f8f8;
+      text-align: left;
+    }
+    .total-row {
+      background-color: #ffeeba;
+      font-weight: bold;
+    }
+    .notes {
+      font-size: 13px;
+      margin-top: 10px;
+    }
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 13px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="invoice-box">
+
+    <div class="invoice-number">
+      Invoice No: {{ "%03d" | format(sale.id) }}
+    </div>
+
+    <div class="logo">
+      <img src="file:///C:/Users/Acer/PycharmProjects/PythonSelenium/PythonProject/fruitbiz_app/app/static/images/logo.png" alt="Shyam Kela Group Logo">
+    </div>
+
+    <div class="title">
+      <h2>Jai Shree Krishna Kela Group</h2>
+      <h4>Seller Invoice</h4>
+    </div>
+
+    <div class="meta">
+      <p><strong>Date:</strong> {{ sale.date.strftime('%d-%m-%Y') }}</p>
+      <p><strong>Seller Name:</strong> {{ sale.seller_name }}</p>
+      <p><strong>Fruit Name:</strong> {{ sale.fruit_name }}</p>
+      <p><strong>Quality:</strong> {{ sale.quality }}</p>
+    </div>
+      <table>
+        <tr><th>Weight (Quintal)</th><td>{{ sale.weight }}</td></tr>
+        <tr><th>Rate (₹/Quintal)</th><td>{{ sale.rate }}</td></tr>
+        <tr><th>Commission Rate</th><td>{{ sale.commission_rate }}</td></tr>
+        <tr><th>Total Commission:</th><td>₹{{ "%.2f"|format(sale.total_commission) }}</td></tr>
+        <tr><th>Labour Charges</th><td>{{ sale.labour_charge }}</td></tr>
+        <tr><th>Mandi Charges</th><td>{{ sale.mandi_charge }}</td></tr>
+        <tr><th>Tax</th><td>{{ sale.tax }}</td></tr>
+        <tr class="total-row"><th>Total Price (₹)</th><td>{{ sale.total_price }}</td></tr>
+      </table>
+    <div class="footer">
+      Thank you for doing business with Jai Shree Krishna Kela Group!
+    </div>
+  </div>
+
+</body>
+</html>

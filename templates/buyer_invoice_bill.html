@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buyer Invoice</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: url("/images/banana-bg.png") no-repeat center;
+      background-size: cover;
+      background-attachment: fixed;
+      padding: 40px;
+      margin: 0;
+    }
+
+    .invoice-box {
+      max-width: 850px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border: 1px solid #eee;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      width: 120px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .logo-container {
+      position: absolute;
+      left: 0;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #2a2a2a;
+      text-align: center;
+    }
+
+    .sub-header {
+      text-align: center;
+      font-size: 16px;
+      margin: 20px 0;
+      color: #555;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    table th {
+      background-color: #f0f0f0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+
+    table td {
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    .info-label {
+      font-weight: bold;
+      color: #444;
+    }
+
+    .notes {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #fefde8;
+      border-left: 4px solid #f39c12;
+      font-style: italic;
+    }
+
+    .footer {
+      margin-top: 40px;
+      text-align: right;
+      font-size: 14px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="invoice-box">
+    <div class="header">
+      <div class="logo-container">
+        <img src="file:///C:/Users/Acer/PycharmProjects/PythonSelenium/PythonProject/fruitbiz_app/app/static/images/logo.png" class="logo">
+      </div>
+      <div class="title">
+        <div class="main-title">Jai Shree Krishna Kela Group</div>
+      </div>
+    </div>
+
+    <div class="sub-header">Buyer Invoice</div>
+
+    <table>
+      <tr>
+        <td><span class="info-label">Invoice No:</span> {{ purchase.bill_no }}</td>
+        <td><span class="info-label">Date:</span> {{ purchase.date.strftime('%d-%m-%Y') }}</td>
+      </tr>
+      <tr>
+        <td><span class="info-label">Buyer Name:</span> {{ purchase.farmer_name }}</td>
+        <td><span class="info-label">Village:</span> {{ purchase.village or "--" }}</td>
+      </tr>
+      <tr>
+        <td><span class="info-label">Vehicle No:</span> {{ purchase.vehicle_no or "--" }}</td>
+        <td><span class="info-label">Board No:</span> {{ purchase.board_no or "--" }}</td>
+      </tr>
+      <tr>
+        <td><span class="info-label">Quality:</span> {{ purchase.quality or "--" }}</td>
+        <td><span class="info-label">Fruit:</span> {{ purchase.fruit_name or "Banana" }}</td>
+      </tr>
+    </table>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Weight (kg)</th>
+          <th>Rate (₹/kg)</th>
+          <th>Total Amount (₹)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ purchase.weight }}</td>
+          <td>{{ purchase.rate }}</td>
+          <td><strong>{{ purchase.total_price }}</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="notes">
+      <strong>Notes:</strong> {{ purchase.notes or '---' }}
+    </div>
+
+    <div class="footer">
+      Authorized Signature: _______________________
+    </div>
+  </div>
+</body>
+</html>
